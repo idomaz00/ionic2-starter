@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { NavController } from 'ionic-angular';
+import { LandingPage } from '../landing/landing';
 
 @Component({
   selector: 'page-posts',
@@ -8,8 +9,16 @@ import { NavController } from 'ionic-angular';
 })
 export class PostsPage {
 
-  constructor(public navCtrl: NavController) {
+  rootHomePage: any = LandingPage;
 
+  constructor(public navCtrl: NavController) {}
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad posts');
+  }
+
+  goHome(): void {
+    this.navCtrl.parent.parent.setRoot(LandingPage);
   }
 
 }
