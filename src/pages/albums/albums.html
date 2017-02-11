@@ -3,9 +3,17 @@
     <ion-title>
       Albums
     </ion-title>
+
+    <ion-buttons end>
+      <button ion-button (click)="goHome()">      
+        <ion-icon ios="ios-home" md="md-home"></ion-icon>
+      </button>
+    </ion-buttons> 
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+
+  <button ion-button [navPush]="pushPage">Album details</button>
 
 </ion-content>

@@ -10,18 +10,16 @@ import { TabsPage } from '../tabs/tabs';
 export class LandingPage {
   tabPage: any = TabsPage;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-      console.log('ctor landing');
+  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad landing');
   }
 
   goToTab(tabIndex: number): void {
-    this.navCtrl.setRoot(TabsPage, {
+    this.navCtrl.push(TabsPage, {
       index: tabIndex
     });
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LandingPage');
   }
 
 }

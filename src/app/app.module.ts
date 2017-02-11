@@ -1,9 +1,12 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+
 import { AlbumsPage } from '../pages/albums/albums';
+import { AlbumDetailsPage } from '../pages/albums/album-details/album-details';
 import { FavouritesPage } from '../pages/favourites/favourites';
 import { PostsPage } from '../pages/posts/posts';
+
 import { TabsPage } from '../pages/tabs/tabs';
 import { LandingPage } from '../pages/landing/landing';
 
@@ -11,18 +14,22 @@ import { LandingPage } from '../pages/landing/landing';
   declarations: [
     MyApp,
     AlbumsPage,
+    AlbumDetailsPage,
     FavouritesPage,
     PostsPage,
     TabsPage,
     LandingPage
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp, {
+      tabsHideOnSubPages: true
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     AlbumsPage,
+    AlbumDetailsPage,
     FavouritesPage,
     PostsPage,
     TabsPage,

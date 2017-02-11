@@ -4,6 +4,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { PostsPage } from '../posts/posts';
 import { AlbumsPage } from '../albums/albums';
 import { FavouritesPage } from '../favourites/favourites';
+import { LandingPage } from '../landing/landing';
 
 @Component({
   templateUrl: 'tabs.html'
@@ -18,15 +19,12 @@ export class TabsPage {
   tabIndex: number = 0; 
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    //this.tabIndex = this.navParams.get('index');
-    console.log('ctor tabs');
-    this.switchTabs();
-
+    this.tabIndex = this.navParams.get('index');
+    //this.switchTabs();
   }
 
   switchTabs() {
     this.tabIndex = this.navParams.get('index');
-    console.log('fct swic tabs',this.tabIndex);
-
   }
+
 }
