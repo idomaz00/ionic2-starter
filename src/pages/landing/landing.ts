@@ -22,8 +22,7 @@ export class LandingPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private store: Store<AppStore>, private postsService: PostsService) {
       console.log('ctor landing');
 
-      //this.posts = this.store.select('posts').take(5);
-      this.posts = postsService.posts;
+      this.posts = postsService.landingPosts;
       postsService.fetchPosts();
   }
 

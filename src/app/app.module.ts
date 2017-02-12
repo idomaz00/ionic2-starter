@@ -14,7 +14,7 @@ import { StoreModule } from '@ngrx/store';
 
 import { PostsService } from '../services/posts';
 
-import { postsReducer } from '../reducers/posts';
+import { postsReducer, landingPostsReducer } from '../reducers/posts';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,7 @@ import { postsReducer } from '../reducers/posts';
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages: true
     }),
-    StoreModule.provideStore({posts: postsReducer})
+    StoreModule.provideStore({posts: postsReducer, landingPosts: landingPostsReducer})
   ],
   bootstrap: [IonicApp],
   entryComponents: [
