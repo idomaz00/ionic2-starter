@@ -9,12 +9,15 @@ import { PostsPage } from '../pages/posts/posts';
 
 import { TabsPage } from '../pages/tabs/tabs';
 import { LandingPage } from '../pages/landing/landing';
+import { LandingPostsListPage } from '../pages/landing/landing-posts-list/landing-posts-list';
 
 import { StoreModule } from '@ngrx/store';
 
 import { PostsService } from '../services/posts';
 
-import { reducer } from '../reducers/app-reducer';
+import { postsReducer, landingPostsReducer } from '../reducers/posts';
+
+import { AppPipesModule } from '../pipes/app-pipe';
 
 @NgModule({
   declarations: [
@@ -24,13 +27,15 @@ import { reducer } from '../reducers/app-reducer';
     FavouritesPage,
     PostsPage,
     TabsPage,
-    LandingPage
+    LandingPage,
+    LandingPostsListPage
   ],
   imports: [
+    AppPipesModule,
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages: true
     }),
-    StoreModule.provideStore(reducer)
+    StoreModule.provideStore({posts: postsReducer, landingPosts: landingPostsReducer})
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -40,7 +45,8 @@ import { reducer } from '../reducers/app-reducer';
     FavouritesPage,
     PostsPage,
     TabsPage,
-    LandingPage
+    LandingPage,
+    LandingPostsListPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, PostsService]
 })

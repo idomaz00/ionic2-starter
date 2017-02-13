@@ -12,13 +12,11 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'album-details.html'
 })
 export class AlbumDetailsPage {
-  tabBarElement: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AlbumDetailsPage');
-    
+    console.log('ionViewDidLoad AlbumDetailsPage'); 
   }
   
 }

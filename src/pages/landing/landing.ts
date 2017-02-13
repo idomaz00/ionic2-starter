@@ -1,13 +1,12 @@
-import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/take';
 
 import { TabsPage } from '../tabs/tabs';
-// import { AppState } from '../../services/app-state';
 import { Post } from '../../models/post';
-
-import * as fromRoot from '../../reducers/app-reducer';
+import { AppStore } from '../../models/app-store';
 
 import { PostsService } from '../../services/posts';
 
@@ -18,26 +17,23 @@ import { PostsService } from '../../services/posts';
 })
 export class LandingPage {
   tabPage: any = TabsPage;
- // posts: Observable<Post[]>;
-  posts: Post[];
+  posts: Observable<Array<Post>>;
 
-  ngOnInit(): void {
-    this.postsService.getPosts()
-      .subscribe(posts => { this.posts = posts; }); //minjat ce se
-  }
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, private store: Store<fromRoot.State>, private postsService: PostsService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private store: Store<AppStore>, private postsService: PostsService) {
       console.log('ctor landing');
-  }
 
-  goToTab(tabIndex: number): void {
-    this.navCtrl.setRoot(TabsPage, {
-      index: tabIndex
-    });
+      this.posts = postsService.landingPosts;
+      postsService.fetchPosts();
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LandingPage');
+    console.log('ionViewDidLoad landing');
+  }
+
+  goToTab(tabIndex: number): void {
+    this.navCtrl.push(TabsPage, {
+      index: tabIndex
+    });
   }
 
 }

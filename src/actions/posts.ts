@@ -4,21 +4,21 @@ import { type } from '../util';
 
 export const ActionTypes = {
     FETCH:          type('[Post] Fetch'),
-    FETCH_SUCCESS:  type('[Post] Fetch Success')
+    LOAD_LANDING:   type('[Post] Load Landing')
 };
 
 export class FetchAction implements Action {
     type = ActionTypes.FETCH;
 
-    constructor() { }
+    constructor(public payload: Post[]) { }
 }
 
-export class FetchSuccessAction implements Action {
-    type = ActionTypes.FETCH_SUCCESS;
+export class LoadLandingAction implements Action {
+    type = ActionTypes.LOAD_LANDING;
 
-    constructor(public payload: Post[]) { }
+    constructor(public payload: Post[]) {}
 }
 
 export type Actions
     = FetchAction
-    | FetchSuccessAction;
+    | LoadLandingAction;
