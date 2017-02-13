@@ -7,6 +7,8 @@
 <ion-content padding>
   <h3>List of posts</h3>
 
+  <landing-posts-list [posts]="posts | async"></landing-posts-list>
+
   <button (click)="goToTab(0)">Go to posts</button>
   <button (click)="goToTab(1)">Go to albums</button>
   <button (click)="goToTab(2)">Go to favourites</button>
