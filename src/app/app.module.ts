@@ -10,6 +10,15 @@ import { PostsPage } from '../pages/posts/posts';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LandingPage } from '../pages/landing/landing';
 
+import { StoreModule } from '@ngrx/store';
+
+import { PostsService } from '../services/posts';
+
+import { reducer } from '../reducers/app-reducer';
+
+import { EffectsModule } from '@ngrx/effects';
+import { PostsEffects } from '../effects/posts';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -23,7 +32,9 @@ import { LandingPage } from '../pages/landing/landing';
   imports: [
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages: true
-    })
+    }),
+    StoreModule.provideStore(reducer),
+    EffectsModule.run(PostsEffects),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -35,6 +46,6 @@ import { LandingPage } from '../pages/landing/landing';
     TabsPage,
     LandingPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, PostsService]
 })
 export class AppModule {}
