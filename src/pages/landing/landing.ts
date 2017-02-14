@@ -18,11 +18,13 @@ import { PostsService } from '../../services/posts';
 export class LandingPage {
   tabPage: any = TabsPage;
   posts: Observable<Array<Post>>;
+  isLoading: Observable<boolean>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private store: Store<AppStore>, private postsService: PostsService) {
       console.log('ctor landing');
 
       this.posts = postsService.landingPosts;
+      this.isLoading = postsService.loadingPosts;
       postsService.fetchPosts();
   }
 
