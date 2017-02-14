@@ -14,6 +14,7 @@ import { LandingPostsListPage } from '../pages/landing/landing-posts-list/landin
 import { StoreModule } from '@ngrx/store';
 
 import { PostsService } from '../services/posts';
+import { DBProvider } from '../storage/db-provider';
 
 import { postsReducer, landingPostsReducer } from '../reducers/posts';
 
@@ -48,6 +49,6 @@ import { AppPipesModule } from '../pipes/app-pipe';
     LandingPage,
     LandingPostsListPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, PostsService]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, PostsService, DBProvider]
 })
 export class AppModule {}
