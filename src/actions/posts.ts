@@ -3,9 +3,16 @@ import { Post } from '../models/post';
 import { type } from '../util';
 
 export const ActionTypes = {
-    FETCH:          type('[Post] Fetch'),
-    LOAD_LANDING:   type('[Post] Load Landing')
+    FETCH_IN_PROGRESS:  type('[Post] Fetch In Progress'),
+    FETCH:              type('[Post] Fetch'),
+    LOAD_LANDING:       type('[Post] Load Landing')
 };
+
+export class FetchInProgressAction implements Action {
+    type = ActionTypes.FETCH_IN_PROGRESS;
+
+    constructor() {}
+}
 
 export class FetchAction implements Action {
     type = ActionTypes.FETCH;
@@ -20,5 +27,6 @@ export class LoadLandingAction implements Action {
 }
 
 export type Actions
-    = FetchAction
+    = FetchInProgressAction
+    | FetchAction
     | LoadLandingAction;

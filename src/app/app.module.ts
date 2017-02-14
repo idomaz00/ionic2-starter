@@ -15,7 +15,7 @@ import { StoreModule } from '@ngrx/store';
 
 import { PostsService } from '../services/posts';
 
-import { postsReducer, landingPostsReducer } from '../reducers/posts';
+import { loadingPostsReducer, postsReducer, landingPostsReducer } from '../reducers/posts';
 
 import { AppPipesModule } from '../pipes/app-pipe';
 
@@ -35,7 +35,7 @@ import { AppPipesModule } from '../pipes/app-pipe';
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages: true
     }),
-    StoreModule.provideStore({posts: postsReducer, landingPosts: landingPostsReducer})
+    StoreModule.provideStore({loading: loadingPostsReducer, posts: postsReducer, landingPosts: landingPostsReducer})
   ],
   bootstrap: [IonicApp],
   entryComponents: [

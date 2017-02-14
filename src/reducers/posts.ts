@@ -1,5 +1,21 @@
 import * as postsActions from '../actions/posts';
 
+export const loadingPostsReducer = (state: any = false, {type}) => {
+    switch(type) {
+        case postsActions.ActionTypes.FETCH_IN_PROGRESS: {
+            return true;
+        }
+
+        case postsActions.ActionTypes.FETCH: {
+            return false;
+        }
+
+        default: {
+            return state;
+        }
+    }
+}
+
 export const postsReducer = (state: any = [], {type, payload}) => {
     switch(type) {
         case postsActions.ActionTypes.FETCH: {
