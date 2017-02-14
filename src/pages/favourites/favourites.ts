@@ -2,55 +2,38 @@ import { Component } from '@angular/core';
 
 import { NavController, Platform } from 'ionic-angular';
 import { LandingPage } from '../landing/landing';
-import { SQLite } from 'ionic-native';
+
+import { DBProvider } from '../../storage/db-provider';
 
 @Component({
   selector: 'page-favourites',
   templateUrl: 'favourites.html'
 })
-export class FavouritesPage {
-  public database: SQLite;
-  public favourites: Array<Object>;
+export class FavouritesPage {;
+    favourites: Array<Object>;
 
-  constructor(public navCtrl: NavController, public platform: Platform) {
-    this.platform.ready().then(() => {
-            this.database = new SQLite();
-            this.database.openDatabase({name: "data.db", location: "default"}).then(() => {
-                this.refresh();
-            }, (error) => {
-                console.log("ERROR: ", error);
-            });
+    constructor(public navCtrl: NavController, public platform: Platform, public database: DBProvider) {
+        this.platform.ready().then(() => {
+            database.OpenExistingDatabase();
+            this.favourites = database.getFavourites();
         });
-    
-  }
 
-   public add() {
-        this.database.executeSql("INSERT INTO favourites (title, author) VALUES ('Blurryfacenotface', '22pilots')", []).then((data) => {
-            console.log("INSERTED: " + JSON.stringify(data));
-        }, (error) => {
-            console.log("ERROR: " + JSON.stringify(error.err));
-        });
     }
 
-    public refresh() {
-        this.database.executeSql("SELECT * FROM favourites", []).then((data) => {
-            this.favourites = [];
-            if(data.rows.length > 0) {
-                for(var i = 0; i < data.rows.length; i++) {
-                    this.favourites.push({title: data.rows.item(i).title, author: data.rows.item(i).author});
-                }
-            }
-        }, (error) => {
-            console.log("ERROR: " + JSON.stringify(error));
-        });
+    refresh(): void {
+        this.favourites = this.database.getFavourites();
     }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad favourites');
-  }
+    add() {
+        this.database.addToDB(); // hardkodirano zasad
+    }
 
-  goHome(): void {
-    this.navCtrl.parent.parent.setRoot(LandingPage);
-  }
+    ionViewDidLoad() {
+        console.log('ionViewDidLoad favourites');
+    }
+
+    goHome(): void {
+        this.navCtrl.parent.parent.setRoot(LandingPage);
+    }
 
 }
