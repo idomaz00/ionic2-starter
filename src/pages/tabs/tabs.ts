@@ -4,7 +4,6 @@ import { NavController, NavParams } from 'ionic-angular';
 import { PostsPage } from '../posts/posts';
 import { AlbumsPage } from '../albums/albums';
 import { FavouritesPage } from '../favourites/favourites';
-import { LandingPage } from '../landing/landing';
 
 @Component({
   templateUrl: 'tabs.html'
