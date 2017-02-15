@@ -1,0 +1,26 @@
+  <ion-card *ngFor="let album of albums">
+    <ion-card-header>
+      {{ album.title }}
+    </ion-card-header>
+
+    <ion-card-content>
+      lorem ipsum...{{ album.userId }}
+    </ion-card-content>
+
+    <ion-row>
+      <ion-col>
+        <button ion-button icon-left clear small color="danger">
+          <ion-icon ios="ios-star-outline" md="md-star-outline"></ion-icon>
+          <div>Favourite</div>
+        </button>
+      </ion-col>
+      <ion-col>
+      </ion-col>
+      <ion-col>
+        <button [navPush]="pushDetailsPage" ion-button clear small item-right>
+          <div>See more...</div>
+        </button>
+      </ion-col>
+    </ion-row>
+    
+  </ion-card>
