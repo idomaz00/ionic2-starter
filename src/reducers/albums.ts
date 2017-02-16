@@ -3,11 +3,7 @@ import * as albumsActions from '../actions/albums';
 export const albumsReducer = (state: any = [], {type, payload}) => {
     switch(type) {
         case albumsActions.ActionTypes.LOAD: {
-            let albumList = payload.map(album => Object.assign({}, album, {
-                                                    isFavourite: false
-                                                })
-                                         );
-            console.log(albumList);                             
+            let albumList = payload.map(album => Object.assign({}, album, {isFavourite: false}));                           
             return albumList;
         }
 

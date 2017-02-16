@@ -13,20 +13,19 @@ export class AlbumsListPage {
   favourites: number [] = [];
   pushDetailsPage = AlbumDetailsPage;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) { 
-    console.log(this.albums);
-  }
+  constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   addToFavourites(id:number){
     this.favourites.push(id);
-    this.albums[id-1].isFavourite = true;
+    this.albums[id-1].isFavourite = true; //objects property id starts from 1 not from 0
     console.log(this.favourites);
 
   }
 
   removeFromFavourites(id:number){
-    this.favourites.splice(id,1);
-    this.albums[id-1].isFavourite = false;
+    let index = this.favourites.indexOf(id);
+    this.favourites.splice(index,1);
+    this.albums[id-1].isFavourite = false; //objects property id starts from 1 not from 0
     console.log(this.favourites);
 
   }
