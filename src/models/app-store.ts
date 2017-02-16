@@ -1,4 +1,5 @@
 import { Post } from './post';
+import { Album } from './album';
 
 export interface AppStore {
     loading: boolean;

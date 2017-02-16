@@ -1,0 +1,27 @@
+<ion-content padding>
+    <ion-card *ngFor="let post of posts">
+        <ion-card-header>
+            {{post.title}}
+        </ion-card-header> 
+
+        <ion-card-content>
+            {{post.body}}
+        </ion-card-content>
+
+        <ion-row>
+            <ion-col>
+                <button (click)="viewDetails(post)" ion-button clear small item-left>
+                    <div>See more...</div>
+                </button>
+            </ion-col>
+            <ion-col>
+            </ion-col>
+            <ion-col>
+            </ion-col>
+        </ion-row>     
+    </ion-card>
+
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more posts..."></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>

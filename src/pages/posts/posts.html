@@ -12,12 +12,5 @@
   
 </ion-header>
 
-<ion-content padding>
-  <ion-list>
-    <ion-item *ngFor="let post of posts">{{post.title}}</ion-item>
-  </ion-list>
+<posts-list [posts]="posts" (loadPosts)="loadPosts($event)"></posts-list>
 
-  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more posts..."></ion-infinite-scroll-content>
-  </ion-infinite-scroll>
-</ion-content>

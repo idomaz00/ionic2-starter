@@ -5,7 +5,10 @@ import { MyApp } from './app.component';
 import { AlbumsPage } from '../pages/albums/albums';
 import { AlbumDetailsPage } from '../pages/albums/album-details/album-details';
 import { FavouritesPage } from '../pages/favourites/favourites';
+
 import { PostsPage } from '../pages/posts/posts';
+import { PostsListPage } from '../pages/posts/posts-list/posts-list';
+import { PostDetailsPage } from '../pages/posts/post-details/post-details';
 
 import { TabsPage } from '../pages/tabs/tabs';
 import { LandingPage } from '../pages/landing/landing';
@@ -27,6 +30,8 @@ import { AppPipesModule } from '../pipes/app-pipe';
     AlbumDetailsPage,
     FavouritesPage,
     PostsPage,
+    PostsListPage,
+    PostDetailsPage,
     TabsPage,
     LandingPage,
     LandingPostsListPage
@@ -45,6 +50,8 @@ import { AppPipesModule } from '../pipes/app-pipe';
     AlbumDetailsPage,
     FavouritesPage,
     PostsPage,
+    PostsListPage,
+    PostDetailsPage,
     TabsPage,
     LandingPage,
     LandingPostsListPage
