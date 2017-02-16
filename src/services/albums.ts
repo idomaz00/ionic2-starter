@@ -22,7 +22,7 @@ export class AlbumsService {
         this.http.get(this.API_PATH)
             .map(res => res.json())
             .map(payload => ({ type: albumsActions.ActionTypes.LOAD, payload }))
-            .subscribe(action => this.store.dispatch(action));
+            .subscribe(action => {this.store.dispatch(action); console.log(this.albums);});
     }
 
 }
