@@ -39,3 +39,27 @@ export const landingPostsReducer = (state: any = [], {type, payload}) => {
         }
     }
 }
+
+export const postUserReducer = (state: any = [], {type, payload}) => {
+    switch(type) {
+        case postsActions.ActionTypes.FETCH_POST_AUTHOR: {
+            return payload;
+        }
+
+        default: {
+            return state;
+        }
+    }
+}
+
+export const postCommentsReducer = (state: any = [], {type, payload}) => {
+    switch(type) {
+        case postsActions.ActionTypes.FETCH_POST_COMMENTS: {
+            return payload;
+        }
+
+        default: {
+            return state;
+        }
+    }
+}

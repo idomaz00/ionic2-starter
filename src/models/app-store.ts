@@ -1,8 +1,12 @@
 import { Post } from './post';
-import { Album } from './album';
+import { User } from './user';
+import { Comment } from './comment';
 
 export interface AppStore {
     loading: boolean;
     posts: Post[];
     landingPosts: Post[];
+    users: User[];
+    postAuthor: User;
+    postComments: Comment[];
 }

@@ -10,9 +10,7 @@ import { Post } from '../../../models/post';
 export class LandingPostsListPage {
   @Input() posts: Post[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    //this.posts.sort().reverse();
-  }
+  constructor(public navCtrl: NavController, public navParams: NavParams) {  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LandingPostsList');

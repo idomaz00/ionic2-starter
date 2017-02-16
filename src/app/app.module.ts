@@ -17,9 +17,11 @@ import { LandingPostsListPage } from '../pages/landing/landing-posts-list/landin
 import { StoreModule } from '@ngrx/store';
 
 import { PostsService } from '../services/posts';
+import { UsersService } from '../services/users';
 import { DBProvider } from '../storage/db-provider';
 
-import { loadingPostsReducer, postsReducer, landingPostsReducer } from '../reducers/posts';
+import { loadingPostsReducer, postsReducer, landingPostsReducer, postUserReducer, postCommentsReducer } from '../reducers/posts';
+import { usersReducer } from '../reducers/users';
 
 import { AppPipesModule } from '../pipes/app-pipe';
 
@@ -41,7 +43,14 @@ import { AppPipesModule } from '../pipes/app-pipe';
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages: true
     }),
-    StoreModule.provideStore({loading: loadingPostsReducer, posts: postsReducer, landingPosts: landingPostsReducer})
+    StoreModule.provideStore({
+      loading: loadingPostsReducer, 
+      posts: postsReducer, 
+      landingPosts: landingPostsReducer, 
+      users: usersReducer,
+      postAuthor: postUserReducer, 
+      postComments: postCommentsReducer
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -56,6 +65,6 @@ import { AppPipesModule } from '../pipes/app-pipe';
     LandingPage,
     LandingPostsListPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, PostsService, DBProvider]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, PostsService, UsersService, DBProvider]
 })
 export class AppModule {}

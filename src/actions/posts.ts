@@ -5,7 +5,9 @@ import { type } from '../util';
 export const ActionTypes = {
     FETCH_IN_PROGRESS:  type('[Post] Fetch In Progress'),
     FETCH:              type('[Post] Fetch'),
-    LOAD_LANDING:       type('[Post] Load Landing')
+    LOAD_LANDING:       type('[Post] Load Landing'),
+    FETCH_POST_AUTHOR:  type('[Post] Fetch Post User'),
+    FETCH_POST_COMMENTS:type('[Post] Fetch Post Comments')
 };
 
 export class FetchInProgressAction implements Action {
@@ -26,7 +28,21 @@ export class LoadLandingAction implements Action {
     constructor(public payload: Post[]) {}
 }
 
+export class FetchPostUserAction implements Action {
+    type = ActionTypes.FETCH_POST_AUTHOR;
+
+    constructor() {}
+}
+
+export class FetchPostCommentsAction implements Action {
+    type = ActionTypes.FETCH_POST_COMMENTS;
+
+    constructor() {}
+}
+
 export type Actions
     = FetchInProgressAction
     | FetchAction
-    | LoadLandingAction;
+    | LoadLandingAction
+    | FetchPostUserAction
+    | FetchPostCommentsAction;
