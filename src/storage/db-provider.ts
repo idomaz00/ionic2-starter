@@ -31,7 +31,7 @@ export class DBProvider {
 
     OpenExistingDatabase(): void {
         this.database.openDatabase({
-            name: "data2.db", 
+            name: "data2.db", //izvuc u konfiguraciju
             location: "default"})
         .then(() => {
             this.fetchFromDB();

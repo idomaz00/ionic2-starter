@@ -34,4 +34,9 @@ export class AlbumsService {
         this.database.addToDB(album);   
     }
 
+    removeFavourite(album: Album){
+        this.store.dispatch({ type: albumsActions.ActionTypes.ADD_FAVOURITE, payload: album.id});
+        this.database.removeToDB(album);   
+    }
+
 }
