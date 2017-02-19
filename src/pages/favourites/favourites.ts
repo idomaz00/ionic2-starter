@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { NavController, Platform } from 'ionic-angular';
 import { LandingPage } from '../landing/landing';
 
-import { DBProvider } from '../../storage/db-provider';
+import { FavouritesService } from '../../services/favourites.service';
 
 @Component({
   selector: 'page-favourites',
@@ -12,16 +12,15 @@ import { DBProvider } from '../../storage/db-provider';
 export class FavouritesPage {;
     favourites: Array<Object>;
 
-    constructor(public navCtrl: NavController, public platform: Platform, public database: DBProvider) {
-        this.platform.ready().then(() => {
-            database.OpenExistingDatabase();
-            this.favourites = database.getFavourites();
-        });
-
+    constructor(public navCtrl: NavController, public platform: Platform, private favouritesService: FavouritesService ) {
+        //database.OpenExistingDatabase();
+        //this.favourites = database.getFavourites();
     }
 
     refresh(): void {
-        this.favourites = this.database.getFavourites();
+        this.favouritesService.getFavourites();
+        //this.favourites = this.database.getFavourites();
+        //this.favourites = this.favouritesService.getFavourites();
     }
 
     ionViewDidLoad() {

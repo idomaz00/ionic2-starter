@@ -6,7 +6,7 @@ import { AlbumDetailsPage } from '../album-details/album-details';
 import { Album } from '../../../models/album';
 
 import { AppStore } from '../../../models/app-store';
-import { AlbumsService } from '../../../services/albums';
+import { FavouritesService } from '../../../services/favourites.service';
 
 @Component({
   selector: 'albums-list',
@@ -14,30 +14,18 @@ import { AlbumsService } from '../../../services/albums';
 })
 export class AlbumsListPage {
   @Input() albums: Album[]; 
-  favourites: number [] = [];
   pushDetailsPage = AlbumDetailsPage;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private store: Store<AppStore>, private albumsService: AlbumsService) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, private store: Store<AppStore>, private favouritesService: FavouritesService) {}
 
   addToFavourites(id:number){
     let album = this.albums[id-1];
-    this.albumsService.addFavourite(this.albums[id-1]);
-    
-    //this.favourites.push(id); // za test
-    //this.albums[id-1].isFavourite = true; //objects property id starts from 1 not from 0
-    //console.log(this.favourites); // za test
-
+    this.favouritesService.addFavourite(album);
   }
 
   removeFromFavourites(id:number){
-
-    //this.albumsService.removeFavourite(id);
-
-    //let index = this.favourites.indexOf(id);
-    //this.favourites.splice(index,1);
-    //this.albums[id-1].isFavourite = false; //objects property id starts from 1 not from 0
-    //console.log(this.favourites);
-
+    let album = this.albums[id-1];
+    this.favouritesService.removeFavourite(album);
   }
 
 }

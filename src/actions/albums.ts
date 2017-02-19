@@ -4,7 +4,7 @@ import { type } from '../util';
 
 export const ActionTypes = {
     LOAD:           type('[Album] Load'),
-    ADD_FAVOURITE:  type('[Album] Add favourite'),
+    TOGGLE_FAVOURITE:  type('[Album] Toggle favourite'),
     //REMOVE_FAVOURITE:  type('[Album] Remove favourite'),    
 };
 
@@ -14,11 +14,11 @@ export class LoadAction implements Action {
     constructor(public payload: Album[]) { }
 }
 
-export class AddFavouriteAction implements Action {
-    type = ActionTypes.ADD_FAVOURITE;
+export class ToggleFavouriteAction implements Action {
+    type = ActionTypes.TOGGLE_FAVOURITE;
 
     constructor(public payload: Album) { }
 }
 
 export type Actions
-    = LoadAction | AddFavouriteAction;
+    = LoadAction | ToggleFavouriteAction;

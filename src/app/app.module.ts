@@ -16,16 +16,13 @@ import { LandingPostsListPage } from '../pages/landing/landing-posts-list/landin
 import { StoreModule } from '@ngrx/store';
 
 import { PostsService } from '../services/posts';
-import { AlbumsService } from '../services/albums';
+import { AlbumsService } from '../services/albums.service';
+import { FavouritesService } from '../services/favourites.service';
 import { DBProvider } from '../storage/db-provider';
 
-<<<<<<< 4702cafb3e9dfe3eee6335e579a33ed2411add3c
 import { loadingPostsReducer, postsReducer, landingPostsReducer } from '../reducers/posts';
 import { albumsReducer } from '../reducers/albums';
-=======
-import { postsReducer, landingPostsReducer } from '../reducers/posts';
-import { albumsReducer, addFavouritesReducer} from '../reducers/albums';
->>>>>>> added state for adding favourites, not done
+import { favouritesReducer } from '../reducers/favourites.reducer';
 
 import { AppPipesModule } from '../pipes/app-pipe';
 
@@ -46,11 +43,7 @@ import { AppPipesModule } from '../pipes/app-pipe';
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages: true
     }),
-<<<<<<< 4702cafb3e9dfe3eee6335e579a33ed2411add3c
-    StoreModule.provideStore({loading: loadingPostsReducer, posts: postsReducer, landingPosts: landingPostsReducer, albums: albumsReducer})
-=======
-    StoreModule.provideStore({posts: postsReducer, landingPosts: landingPostsReducer, albums: albumsReducer, favouriteAlbums: addFavouritesReducer})
->>>>>>> added state for adding favourites, not done
+    StoreModule.provideStore({loading: loadingPostsReducer, posts: postsReducer, landingPosts: landingPostsReducer, albums: albumsReducer, favourites: favouritesReducer})
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -64,6 +57,6 @@ import { AppPipesModule } from '../pipes/app-pipe';
     LandingPage,
     LandingPostsListPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, PostsService, DBProvider, AlbumsService]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, PostsService, DBProvider, AlbumsService, FavouritesService]
 })
 export class AppModule {}
