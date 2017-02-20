@@ -9,7 +9,7 @@ import * as favouritesActions from '../actions/favourites.action';
 import { Album } from '../models/album';
 
 export const DB_CONFIGURATION = {
-    name:       "data2.db",
+    name:       "data3.db",
     location:   "default"
 };
 
@@ -29,7 +29,8 @@ export class DBProvider {
         this.database = new SQLite();
         this.database.openDatabase(DB_CONFIGURATION)
         .then(() => {
-            this.database.executeSql("CREATE TABLE IF NOT EXISTS favourites (id INTEGER PRIMARY KEY AUTOINCREMENT, albumId INTEGER, userId INTEGER, title TEXT)", {})
+            //this.database.executeSql("DROP TABLE IF EXISTS favourites",[])
+            this.database.executeSql("CREATE TABLE IF NOT EXISTS favourites (id INTEGER PRIMARY KEY AUTOINCREMENT, userId INTEGER, albumId INTEGER, title TEXT)", {})
                 .then((data) => { 
                                     console.log("TABLE CREATED: ", data);
                                 }, (error) => {
@@ -54,7 +55,7 @@ export class DBProvider {
             this.favouritesList = [];
             if(data.rows.length > 0) {
                 for(var i = 0; i < data.rows.length; i++) {
-                    this.favouritesList.push({title: data.rows.item(i).title, albumId: data.rows.item(i).albumId});
+                    this.favouritesList.push({userId: data.rows.item(i).userId, id: data.rows.item(i).albumId, title: data.rows.item(i).title, isFavourite: false});
                 }
             }
             this.store.dispatch({ type: favouritesActions.ActionTypes.FETCH_FAVOURITES, payload: this.favouritesList});
@@ -67,17 +68,16 @@ export class DBProvider {
 
     addToDB(album: Album) {
 
-        this.store.dispatch({ type: favouritesActions.ActionTypes.ADD_FAVOURITE, payload: album.id});
-        //this.OpenExistingDatabase();
-        // let query = '('+ album.id +', '+ album.userId + ', ' + album.title +')' ;
-        // this.database.executeSql("INSERT INTO favourites (albumId, userId, title) VALUES "+ query, [])
-        // .then((data) => {
-        //     this.store.dispatch({ type: favouritesActions.ActionTypes.TOGGLE_FAVOURITE, payload: album.id});
-        //     console.log("INSERTED: " + JSON.stringify(data));
-        // }, (error) => {
-        //     //this.store.dispatch({ type: favouritesActions.ActionTypes.ERROR, payload: album.id});
-        //     console.log("ERROR: " + JSON.stringify(error.err));
-        // });
+        //let query = '('+ album.userId +', '+ album.id + ', ' + album.title +')' ;
+        //this.database.executeSql("INSERT INTO favourites (userId, id, title) VALUES "+ query, [])
+        this.database.executeSql("INSERT INTO favourites (userId, albumId, title) VALUES (?,?,?)", [album.userId, album.id, album.title])
+        .then((data) => {
+            this.store.dispatch({ type: favouritesActions.ActionTypes.ADD_FAVOURITE, payload: album});
+            console.log("INSERTED: " + JSON.stringify(data));
+        }, (error) => {
+            //this.store.dispatch({ type: favouritesActions.ActionTypes.ERROR, payload: album.id});
+            console.log("ERROR: " + JSON.stringify(error.err));
+        });
     }
 
 }

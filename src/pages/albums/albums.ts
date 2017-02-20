@@ -20,7 +20,6 @@ export class AlbumsPage {
 
   constructor(public navCtrl: NavController, private app:App, private store: Store<AppStore>, private albumsService: AlbumsService) {
     this.albums = albumsService.albums;
-    albumsService.getAlbums();
   }
 
   ionViewDidLoad() {

@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
 import { NavController, Platform } from 'ionic-angular';
 import { LandingPage } from '../landing/landing';
 
+import { Album } from '../../models/album';
 import { FavouritesService } from '../../services/favourites.service';
 
 @Component({
@@ -10,17 +12,14 @@ import { FavouritesService } from '../../services/favourites.service';
   templateUrl: 'favourites.html'
 })
 export class FavouritesPage {;
-    favourites: Array<Object>;
+    favourites: Observable<Array<Album>>;
 
     constructor(public navCtrl: NavController, public platform: Platform, private favouritesService: FavouritesService ) {
-        //database.OpenExistingDatabase();
-        //this.favourites = database.getFavourites();
+        this.favourites = this.favouritesService.favourites;
     }
 
     refresh(): void {
         this.favouritesService.getFavourites();
-        //this.favourites = this.database.getFavourites();
-        //this.favourites = this.favouritesService.getFavourites();
     }
 
     ionViewDidLoad() {

@@ -18,13 +18,11 @@ export class AlbumsListPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private store: Store<AppStore>, private favouritesService: FavouritesService) {}
 
-  addToFavourites(id:number){
-    let album = this.albums[id-1];
+  addToFavourites(album:Album){
     this.favouritesService.addFavourite(album);
   }
 
-  removeFromFavourites(id:number){
-    let album = this.albums[id-1];
+  removeFromFavourites(album:Album){
     this.favouritesService.removeFavourite(album);
   }
 

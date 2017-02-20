@@ -25,10 +25,4 @@ export class AlbumsService {
             .subscribe(action => this.store.dispatch(action));
     }
 
-    toggleFavourite(album: Album){
-        console.log(album);
-        this.store.dispatch({ type: albumsActions.ActionTypes.TOGGLE_FAVOURITE, payload: album.id});
-        //this.database.addToDB(album);   
-    }
-
 }
