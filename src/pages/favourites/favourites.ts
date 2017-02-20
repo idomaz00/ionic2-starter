@@ -1,31 +1,25 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
 import { NavController, Platform } from 'ionic-angular';
 import { LandingPage } from '../landing/landing';
 
-import { DBProvider } from '../../storage/db-provider';
+import { Album } from '../../models/album';
+import { FavouritesService } from '../../services/favourites.service';
 
 @Component({
   selector: 'page-favourites',
   templateUrl: 'favourites.html'
 })
 export class FavouritesPage {;
-    favourites: Array<Object>;
+    favourites: Observable<Array<Album>>;
 
-    constructor(public navCtrl: NavController, public platform: Platform, public database: DBProvider) {
-        this.platform.ready().then(() => {
-            database.OpenExistingDatabase();
-            this.favourites = database.getFavourites();
-        });
-
+    constructor(public navCtrl: NavController, public platform: Platform, private favouritesService: FavouritesService ) {
+        this.favourites = this.favouritesService.favourites;
     }
 
     refresh(): void {
-        this.favourites = this.database.getFavourites();
-    }
-
-    add() {
-        this.database.addToDB(); // hardkodirano zasad
+        this.favouritesService.getFavourites();
     }
 
     ionViewDidLoad() {
