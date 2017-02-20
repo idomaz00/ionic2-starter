@@ -15,15 +15,14 @@
 
 <ion-content>
   <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
+    <ion-list-header>Your favourited albums</ion-list-header>
     <ion-item>
       <button (click)="refresh()">Refresh</button>
-      <button (click)="add()">Add</button>
     </ion-item>
 
     <ion-list>
          <ion-item *ngFor="let album of favourites">
-             {{album.title}} {{album.author}}
+             {{album.title}} {{album.albumId}}
          </ion-item>
      </ion-list>
 

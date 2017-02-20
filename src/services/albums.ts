@@ -9,20 +9,29 @@ import * as albumsActions from '../actions/albums';
 
 import { AppStore } from '../models/app-store';
 
+import { DBProvider } from '../storage/db-provider';
+
 @Injectable()
 export class AlbumsService {
     albums: Observable<Array<Album>>;
+    favouritedAlbums: Observable<Array<Album>>;
     private API_PATH: string = 'https://jsonplaceholder.typicode.com/albums';
 
-    constructor(private http: Http, private store: Store<AppStore>) {
+    constructor(private http: Http, private store: Store<AppStore>, private database: DBProvider) {
         this.albums = store.select('albums');
+        //this.favouritedAlbums = store.select('favouriteAlbums');
     }
 
     getAlbums() {
         this.http.get(this.API_PATH)
             .map(res => res.json())
             .map(payload => ({ type: albumsActions.ActionTypes.LOAD, payload }))
-            .subscribe(action => {this.store.dispatch(action); console.log(this.albums);});
+            .subscribe(action => this.store.dispatch(action));
+    }
+
+    addFavourite(album: Album){
+        this.store.dispatch({ type: albumsActions.ActionTypes.ADD_FAVOURITE, payload: album.id});
+        this.database.addToDB(album);   
     }
 
 }

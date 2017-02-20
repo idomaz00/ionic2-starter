@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { SQLite } from 'ionic-native';
 
+import { Album } from '../models/album';
+
 @Injectable()
 export class DBProvider {
-
     database: SQLite;
     favourites: Array<Object>;
 
@@ -14,10 +15,10 @@ export class DBProvider {
     InitialSetUp(): void {
         this.database = new SQLite();
         this.database.openDatabase({
-            name: "data.db",
+            name: "data2.db",
             location: "default"
         }).then(() => {
-            this.database.executeSql("CREATE TABLE IF NOT EXISTS favourites (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, author TEXT)", {})
+            this.database.executeSql("CREATE TABLE IF NOT EXISTS favourites (id INTEGER PRIMARY KEY AUTOINCREMENT, albumId INTEGER, userId INTEGER, title TEXT)", {})
                 .then((data) => { 
                                     console.log("TABLE CREATED: ", data);
                                 }, (error) => {
@@ -30,7 +31,7 @@ export class DBProvider {
 
     OpenExistingDatabase(): void {
         this.database.openDatabase({
-            name: "data.db", 
+            name: "data2.db", 
             location: "default"})
         .then(() => {
             this.fetchFromDB();
@@ -39,11 +40,12 @@ export class DBProvider {
         });
     }
     //hardkodirano zasad
-    addToDB() {
+    addToDB(album: Album) {
         //TODO: 
         //preko parametara uzet VALUES
         //odvojit u stringu jedan querry i na mistima stavit te parametre
-        this.database.executeSql("INSERT INTO favourites (title, author) VALUES ('Blurryfacenotface', '21pilots')", []).then((data) => {
+        let query = '('+ album.id +', '+ album.userId + ', ' + album.title +')' ;
+        this.database.executeSql("INSERT INTO favourites (albumId, userId, title) VALUES "+ query, []).then((data) => {
             console.log("INSERTED: " + JSON.stringify(data));
         }, (error) => {
             console.log("ERROR: " + JSON.stringify(error.err));
@@ -55,7 +57,7 @@ export class DBProvider {
             this.favourites = [];
             if(data.rows.length > 0) {
                 for(var i = 0; i < data.rows.length; i++) {
-                    this.favourites.push({title: data.rows.item(i).title, author: data.rows.item(i).author});
+                    this.favourites.push({title: data.rows.item(i).title, albumId: data.rows.item(i).albumId});
                 }
             }
         }, (error) => {
@@ -68,7 +70,7 @@ export class DBProvider {
             this.favourites = [];
             if(data.rows.length > 0) {
                 for(var i = 0; i < data.rows.length; i++) {
-                    this.favourites.push({title: data.rows.item(i).title, author: data.rows.item(i).author});
+                    this.favourites.push({title: data.rows.item(i).title, albumId: data.rows.item(i).albumId});
                 }
             }
         }, (error) => {

@@ -19,8 +19,13 @@ import { PostsService } from '../services/posts';
 import { AlbumsService } from '../services/albums';
 import { DBProvider } from '../storage/db-provider';
 
+<<<<<<< 4702cafb3e9dfe3eee6335e579a33ed2411add3c
 import { loadingPostsReducer, postsReducer, landingPostsReducer } from '../reducers/posts';
 import { albumsReducer } from '../reducers/albums';
+=======
+import { postsReducer, landingPostsReducer } from '../reducers/posts';
+import { albumsReducer, addFavouritesReducer} from '../reducers/albums';
+>>>>>>> added state for adding favourites, not done
 
 import { AppPipesModule } from '../pipes/app-pipe';
 
@@ -41,7 +46,11 @@ import { AppPipesModule } from '../pipes/app-pipe';
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages: true
     }),
+<<<<<<< 4702cafb3e9dfe3eee6335e579a33ed2411add3c
     StoreModule.provideStore({loading: loadingPostsReducer, posts: postsReducer, landingPosts: landingPostsReducer, albums: albumsReducer})
+=======
+    StoreModule.provideStore({posts: postsReducer, landingPosts: landingPostsReducer, albums: albumsReducer, favouriteAlbums: addFavouritesReducer})
+>>>>>>> added state for adding favourites, not done
   ],
   bootstrap: [IonicApp],
   entryComponents: [

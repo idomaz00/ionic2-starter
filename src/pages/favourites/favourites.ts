@@ -24,10 +24,6 @@ export class FavouritesPage {;
         this.favourites = this.database.getFavourites();
     }
 
-    add() {
-        this.database.addToDB(); // hardkodirano zasad
-    }
-
     ionViewDidLoad() {
         console.log('ionViewDidLoad favourites');
     }

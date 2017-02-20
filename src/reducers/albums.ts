@@ -7,6 +7,19 @@ export const albumsReducer = (state: any = [], {type, payload}) => {
             return albumList;
         }
 
+        case albumsActions.ActionTypes.ADD_FAVOURITE: {
+            let list = state.map((album, index) => {
+                        if (index+1 === payload) {
+                            return Object.assign({}, album, {
+                                isFavourite: !album.isFavourite
+                            })
+                        }
+                        return album;
+                    })
+                    
+            return list;
+        }
+
         default: {
             return state;
         }
@@ -15,9 +28,11 @@ export const albumsReducer = (state: any = [], {type, payload}) => {
 
 export const addFavouritesReducer = (state: any = [], {type, payload}) => {
     switch(type) {
-        case albumsActions.ActionTypes.ADD_FAVOURITE: {
-            return payload;
-        }
+        // case albumsActions.ActionTypes.ADD_FAVOURITE: {
+        //     const album = payload;
+        //     console.log(payload);
+        //     return payload;
+        // }
 
         default: {
             return state;
