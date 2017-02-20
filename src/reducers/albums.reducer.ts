@@ -1,4 +1,4 @@
-import * as albumsActions from '../actions/albums';
+import * as albumsActions from '../actions/albums.actions';
 
 export const albumsReducer = (state: any = [], {type, payload}) => {
     switch(type) {

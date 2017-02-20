@@ -21,7 +21,7 @@ import { FavouritesService } from '../services/favourites.service';
 import { DBProvider } from '../storage/db-provider';
 
 import { loadingPostsReducer, postsReducer, landingPostsReducer } from '../reducers/posts';
-import { albumsReducer } from '../reducers/albums';
+import { albumsReducer } from '../reducers/albums.reducer';
 import { favouritesReducer } from '../reducers/favourites.reducer';
 
 import { AppPipesModule } from '../pipes/app-pipe';

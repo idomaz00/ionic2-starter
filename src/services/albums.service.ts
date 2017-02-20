@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 import { Album } from '../models/album';
 
 import { Store } from '@ngrx/store';
-import * as albumsActions from '../actions/albums';
+import * as albumsActions from '../actions/albums.actions';
 
 import { AppStore } from '../models/app-store';
 

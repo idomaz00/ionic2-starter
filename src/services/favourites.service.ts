@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { Album } from '../models/album';
 
 import { Store } from '@ngrx/store';
-import * as albumsActions from '../actions/albums';
+import * as albumsActions from '../actions/albums.actions';
 import * as favouritesActions from '../actions/favourites.action';
 
 import { AppStore } from '../models/app-store';
