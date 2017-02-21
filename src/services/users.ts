@@ -5,6 +5,7 @@ import 'rxjs/add/operator/map';
 
 import { Store } from '@ngrx/store';
 import * as usersActions from '../actions/users';
+import * as postsActions from '../actions/posts';
 
 import { AppStore } from '../models/app-store';
 
@@ -28,10 +29,11 @@ export class UsersService {
             .subscribe(action => { 
                 this.store.dispatch(action); 
                 this.usersArray = action.payload;
+                this.store.dispatch({ type:postsActions.ActionTypes.LOAD_AUTHOR, payload: this.usersArray });
             });
     }
 
-    getAuthor(userId: number): User {
+    getAuthor(userId: number) {
         return this.usersArray.find(user => user.id === userId );
     }
 }

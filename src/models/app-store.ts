@@ -7,6 +7,5 @@ export interface AppStore {
     posts: Post[];
     landingPosts: Post[];
     users: User[];
-    postAuthor: User;
     postComments: Comment[];
 }

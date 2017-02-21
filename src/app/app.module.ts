@@ -20,7 +20,7 @@ import { PostsService } from '../services/posts';
 import { UsersService } from '../services/users';
 import { DBProvider } from '../storage/db-provider';
 
-import { loadingPostsReducer, postsReducer, landingPostsReducer, postUserReducer, postCommentsReducer } from '../reducers/posts';
+import { loadingPostsReducer, postsReducer, landingPostsReducer, postCommentsReducer } from '../reducers/posts';
 import { usersReducer } from '../reducers/users';
 
 import { AppPipesModule } from '../pipes/app-pipe';
@@ -48,7 +48,6 @@ import { AppPipesModule } from '../pipes/app-pipe';
       posts: postsReducer, 
       landingPosts: landingPostsReducer, 
       users: usersReducer,
-      postAuthor: postUserReducer, 
       postComments: postCommentsReducer
     })
   ],

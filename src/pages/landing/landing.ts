@@ -24,9 +24,9 @@ export class LandingPage {
       console.log('ctor landing');
 
       this.posts = postsService.landingPosts;
-      this.isLoading = postsService.loadingPosts;
+      //this.isLoading = postsService.loadingPosts;
       postsService.fetchPosts();
-      usersService.fetchUsers();
+      //usersService.fetchUsers();
   }
 
   ionViewDidLoad() {
