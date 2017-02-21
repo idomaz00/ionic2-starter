@@ -14,6 +14,6 @@
 
 <ion-content padding>
 
-  <button ion-button [navPush]="pushPage">Album details</button>
+  <albums-list [albums]="albums | async"></albums-list>
 
 </ion-content>

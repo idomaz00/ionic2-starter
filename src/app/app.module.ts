@@ -3,7 +3,9 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { AlbumsPage } from '../pages/albums/albums';
+import { AlbumsListPage } from '../pages/albums/albums-list/albums-list';
 import { AlbumDetailsPage } from '../pages/albums/album-details/album-details';
+
 import { FavouritesPage } from '../pages/favourites/favourites';
 
 import { PostsPage } from '../pages/posts/posts';
@@ -22,6 +24,11 @@ import { DBProvider } from '../storage/db-provider';
 
 import { loadingPostsReducer, postsReducer, landingPostsReducer, postCommentsReducer } from '../reducers/posts';
 import { usersReducer } from '../reducers/users';
+import { AlbumsService } from '../services/albums.service';
+import { FavouritesService } from '../services/favourites.service';
+
+import { albumsReducer } from '../reducers/albums.reducer';
+import { favouritesReducer } from '../reducers/favourites.reducer';
 
 import { AppPipesModule } from '../pipes/app-pipe';
 
@@ -29,6 +36,7 @@ import { AppPipesModule } from '../pipes/app-pipe';
   declarations: [
     MyApp,
     AlbumsPage,
+    AlbumsListPage,
     AlbumDetailsPage,
     FavouritesPage,
     PostsPage,
@@ -48,13 +56,16 @@ import { AppPipesModule } from '../pipes/app-pipe';
       posts: postsReducer, 
       landingPosts: landingPostsReducer, 
       users: usersReducer,
-      postComments: postCommentsReducer
+      postComments: postCommentsReducer, 
+      albums: albumsReducer, 
+      favourites: favouritesReducer
     })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     AlbumsPage,
+    AlbumsListPage,
     AlbumDetailsPage,
     FavouritesPage,
     PostsPage,
@@ -64,6 +75,6 @@ import { AppPipesModule } from '../pipes/app-pipe';
     LandingPage,
     LandingPostsListPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, PostsService, UsersService, DBProvider]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, PostsService, UsersService, DBProvider, AlbumsService, FavouritesService]
 })
 export class AppModule {}

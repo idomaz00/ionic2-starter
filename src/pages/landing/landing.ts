@@ -34,7 +34,7 @@ export class LandingPage {
   }
 
   goToTab(tabIndex: number): void {
-    this.navCtrl.push(TabsPage, {
+    this.navCtrl.setRoot(TabsPage, {
       index: tabIndex
     });
   }
