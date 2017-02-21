@@ -29,13 +29,7 @@ export class PostsPage {
   }
 
   loadPosts() {
-    this. posts = [...this.posts, ...this.postsService.loadPosts(this.start)];
+    this.posts = [...this.posts, ...this.postsService.loadPosts(this.start)];
     this.start += 15;
   }
-
-  doInfinite(infiniteScroll) {
-    this.loadPosts();
-    infiniteScroll.complete();
-  }
-
 }

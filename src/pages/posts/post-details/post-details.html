@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Post-details</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+    <ion-card>
+        <ion-card-header>
+            {{post.title}}
+        </ion-card-header> 
+
+        <ion-card-content>
+            {{post.body}}
+            <br>
+            <!--<span>By: {{author.username}}</span>-->
+            <span>By: {{post.author}}</span>
+        </ion-card-content>
+
+        <h3>Comments:</h3>
+        <ion-list>
+            <ion-item *ngFor="let comment of comments | async">
+                <p>{{comment.body}}</p>
+                <span>By: {{comment.email}}</span>
+            </ion-item>
+        </ion-list>
+    </ion-card>
+</ion-content>

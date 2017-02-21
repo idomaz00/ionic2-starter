@@ -2,13 +2,13 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/take';
 
 import { TabsPage } from '../tabs/tabs';
 import { Post } from '../../models/post';
 import { AppStore } from '../../models/app-store';
 
 import { PostsService } from '../../services/posts';
+import { UsersService } from '../../services/users';
 
 @Component({
   selector: 'page-landing',
@@ -20,12 +20,13 @@ export class LandingPage {
   posts: Observable<Array<Post>>;
   isLoading: Observable<boolean>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private store: Store<AppStore>, private postsService: PostsService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private store: Store<AppStore>, private postsService: PostsService, private usersService: UsersService) {
       console.log('ctor landing');
 
       this.posts = postsService.landingPosts;
-      this.isLoading = postsService.loadingPosts;
+      //this.isLoading = postsService.loadingPosts;
       postsService.fetchPosts();
+      //usersService.fetchUsers();
   }
 
   ionViewDidLoad() {

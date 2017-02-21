@@ -7,7 +7,10 @@ import { AlbumsListPage } from '../pages/albums/albums-list/albums-list';
 import { AlbumDetailsPage } from '../pages/albums/album-details/album-details';
 
 import { FavouritesPage } from '../pages/favourites/favourites';
+
 import { PostsPage } from '../pages/posts/posts';
+import { PostsListPage } from '../pages/posts/posts-list/posts-list';
+import { PostDetailsPage } from '../pages/posts/post-details/post-details';
 
 import { TabsPage } from '../pages/tabs/tabs';
 import { LandingPage } from '../pages/landing/landing';
@@ -16,11 +19,14 @@ import { LandingPostsListPage } from '../pages/landing/landing-posts-list/landin
 import { StoreModule } from '@ngrx/store';
 
 import { PostsService } from '../services/posts';
-import { AlbumsService } from '../services/albums.service';
-import { FavouritesService } from '../services/favourites.service';
+import { UsersService } from '../services/users';
 import { DBProvider } from '../storage/db-provider';
 
-import { loadingPostsReducer, postsReducer, landingPostsReducer } from '../reducers/posts';
+import { loadingPostsReducer, postsReducer, landingPostsReducer, postCommentsReducer } from '../reducers/posts';
+import { usersReducer } from '../reducers/users';
+import { AlbumsService } from '../services/albums.service';
+import { FavouritesService } from '../services/favourites.service';
+
 import { albumsReducer } from '../reducers/albums.reducer';
 import { favouritesReducer } from '../reducers/favourites.reducer';
 
@@ -34,6 +40,8 @@ import { AppPipesModule } from '../pipes/app-pipe';
     AlbumDetailsPage,
     FavouritesPage,
     PostsPage,
+    PostsListPage,
+    PostDetailsPage,
     TabsPage,
     LandingPage,
     LandingPostsListPage
@@ -43,7 +51,15 @@ import { AppPipesModule } from '../pipes/app-pipe';
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages: true
     }),
-    StoreModule.provideStore({loading: loadingPostsReducer, posts: postsReducer, landingPosts: landingPostsReducer, albums: albumsReducer, favourites: favouritesReducer})
+    StoreModule.provideStore({
+      loading: loadingPostsReducer, 
+      posts: postsReducer, 
+      landingPosts: landingPostsReducer, 
+      users: usersReducer,
+      postComments: postCommentsReducer, 
+      albums: albumsReducer, 
+      favourites: favouritesReducer
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -53,10 +69,12 @@ import { AppPipesModule } from '../pipes/app-pipe';
     AlbumDetailsPage,
     FavouritesPage,
     PostsPage,
+    PostsListPage,
+    PostDetailsPage,
     TabsPage,
     LandingPage,
     LandingPostsListPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, PostsService, DBProvider, AlbumsService, FavouritesService]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, PostsService, UsersService, DBProvider, AlbumsService, FavouritesService]
 })
 export class AppModule {}
