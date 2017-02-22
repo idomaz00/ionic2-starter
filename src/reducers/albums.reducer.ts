@@ -1,4 +1,6 @@
-import * as albumsActions from '../actions/albums.actions';
+import * as albumsActions from '../actions/albums.action';
+import * as favouritesActions from '../actions/favourites.action';
+import * as postsActions from '../actions/posts';
 
 export const albumsReducer = (state: any = [], {type, payload}) => {
     switch(type) {
@@ -7,8 +9,16 @@ export const albumsReducer = (state: any = [], {type, payload}) => {
             return albumList;
         }
 
-        case albumsActions.ActionTypes.TOGGLE_FAVOURITE: {
-            let list = state.map((album, index) => {
+        case postsActions.ActionTypes.LOAD_AUTHOR: {
+            let albumList = state.map(album => {
+                let albumAuthor = payload.find(user => user.id == album.userId);
+                return Object.assign({}, album, { author: albumAuthor.username });
+            });
+            return albumList;
+        }
+        case favouritesActions.ActionTypes.ADD_FAVOURITE:
+        case favouritesActions.ActionTypes.REMOVE_FAVOURITE:{
+            let albumList = state.map((album, index) => {
                         if (index+1 === payload) {
                             return Object.assign({}, album, {
                                 isFavourite: !album.isFavourite
@@ -16,7 +26,19 @@ export const albumsReducer = (state: any = [], {type, payload}) => {
                         }
                         return album;
                     })
-            return list;
+            return albumList;
+        }
+
+        default: {
+            return state;
+        }
+    }
+}
+
+export const albumPhotoReducer = (state: any = [], {type, payload}) => {
+    switch(type) {
+        case albumsActions.ActionTypes.FETCH_ALBUM_PHOTO: {
+            return payload;
         }
 
         default: {

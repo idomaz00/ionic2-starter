@@ -58,7 +58,8 @@ import { AppPipesModule } from '../pipes/app-pipe';
       users: usersReducer,
       postComments: postCommentsReducer, 
       albums: albumsReducer, 
-      favourites: favouritesReducer
+      favourites: favouritesReducer,
+      photo: albumPhotoReducer,
     })
   ],
   bootstrap: [IonicApp],

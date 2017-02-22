@@ -1,13 +1,26 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>album-details</ion-title>
+    <ion-title>Details of {{album.title}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-
 <ion-content padding>
-  <h5>Nesto malo teksta - detalji o albumima</h5>
+    <div *ngFor="let photo of photos | async">
+      <img src="{{photo.thumbnailUrl}}"/>
+    </div>
+
+    <h5>{{album.title}}</h5>
+    <div><i>By: {{album.author}}</i></div>
+
+    <button *ngIf="!album.isFavourite" ion-button icon-left clear small color="danger" (click)='addToFavourites(album)' >
+      <ion-icon ios="ios-star-outline" md="md-star-outline"></ion-icon>
+      <div>Favourite</div>
+    </button>
+    <button *ngIf="album.isFavourite" ion-button icon-left clear small color="danger" (click)='removeFromFavourites(album)' >
+      <ion-icon ios="ios-star" md="md-star"></ion-icon>
+      <div>Favourite</div>
+    </button>
 
 </ion-content>

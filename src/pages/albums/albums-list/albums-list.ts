@@ -7,6 +7,7 @@ import { Album } from '../../../models/album';
 
 import { AppStore } from '../../../models/app-store';
 import { FavouritesService } from '../../../services/favourites.service';
+import { AlbumsService } from '../../../services/albums.service';
 
 @Component({
   selector: 'albums-list',
@@ -14,10 +15,18 @@ import { FavouritesService } from '../../../services/favourites.service';
 })
 export class AlbumsListPage {
   @Input() albums: Album[]; 
-  pushDetailsPage = AlbumDetailsPage;
+  albumDetailsPage = AlbumDetailsPage;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private store: Store<AppStore>, private favouritesService: FavouritesService) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, private store: Store<AppStore>, private favouritesService: FavouritesService, private albumsService: AlbumsService) {}
 
+  viewDetails(album: Album) {
+    this.albumsService.fetchAlbumPhoto(album.id);
+    this.navCtrl.push(this.albumDetailsPage, {
+      album: album,
+      photo: this.albumsService.photo
+    });
+  }
+  
   addToFavourites(album:Album){
     this.favouritesService.addFavourite(album);
   }

@@ -3,8 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { Album } from '../models/album';
 
 import { Store } from '@ngrx/store';
-import * as albumsActions from '../actions/albums.actions';
-import * as favouritesActions from '../actions/favourites.action';
+//import * as favouritesActions from '../actions/favourites.action';
 
 import { AppStore } from '../models/app-store';
 
@@ -20,23 +19,14 @@ export class FavouritesService {
     }
 
     addFavourite(album: Album){
-        this.store.dispatch({ type: albumsActions.ActionTypes.TOGGLE_FAVOURITE, payload: album.id});
-
-        this.store.dispatch({ type: favouritesActions.ActionTypes.ADD_FAVOURITE, payload: album});
-        //this.database.addToDB(album);   
+        console.log(album);
+        //this.store.dispatch({ type: favouritesActions.ActionTypes.ADD_FAVOURITE, payload: album});
+        this.database.addToDB(album);   
     }
 
     removeFavourite(album: Album){
-        this.store.dispatch({ type: albumsActions.ActionTypes.TOGGLE_FAVOURITE, payload: album.id});
-
-        this.store.dispatch({ type: favouritesActions.ActionTypes.REMOVE_FAVOURITE, payload: album});
-        //this.database.removeToDB(album);   
-    }
-
-    getFavourites(){
-        this.database.OpenExistingDatabase();
-        //this.store.dispatch({ type: favouritesActions.ActionTypes.LOAD_FAVOURITES, payload: this.favourites});
-    
+        //this.store.dispatch({ type: favouritesActions.ActionTypes.REMOVE_FAVOURITE, payload: album});
+        this.database.removeFromDB(album);   
     }
 
 }
