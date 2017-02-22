@@ -20,14 +20,13 @@ import { StoreModule } from '@ngrx/store';
 
 import { PostsService } from '../services/posts';
 import { UsersService } from '../services/users';
+import { AlbumsService } from '../services/albums.service';
+import { FavouritesService } from '../services/favourites.service';
 import { DBProvider } from '../storage/db-provider';
 
 import { loadingPostsReducer, postsReducer, landingPostsReducer, postCommentsReducer } from '../reducers/posts';
 import { usersReducer } from '../reducers/users';
-import { AlbumsService } from '../services/albums.service';
-import { FavouritesService } from '../services/favourites.service';
-
-import { albumsReducer } from '../reducers/albums.reducer';
+import { albumsReducer, albumPhotoReducer} from '../reducers/albums.reducer';
 import { favouritesReducer } from '../reducers/favourites.reducer';
 
 import { AppPipesModule } from '../pipes/app-pipe';
@@ -58,7 +57,8 @@ import { AppPipesModule } from '../pipes/app-pipe';
       users: usersReducer,
       postComments: postCommentsReducer, 
       albums: albumsReducer, 
-      favourites: favouritesReducer
+      favourites: favouritesReducer,
+      photo: albumPhotoReducer,
     })
   ],
   bootstrap: [IonicApp],

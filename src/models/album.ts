@@ -3,4 +3,5 @@ export interface Album {
     id: number;
     title: string;
     isFavourite: boolean;
+    author: string;
 }

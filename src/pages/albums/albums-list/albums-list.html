@@ -4,7 +4,7 @@
     </ion-card-header>
 
     <ion-card-content>
-      lorem ipsum...{{ album.userId }}
+      By:{{ album.author }}
     </ion-card-content>
 
     <ion-row>
@@ -21,7 +21,7 @@
       <ion-col>
       </ion-col>
       <ion-col>
-        <button [navPush]="pushDetailsPage" ion-button clear small item-right>
+        <button (click)="viewDetails(album)" ion-button clear small item-right>
           <div>See more...</div>
         </button>
       </ion-col>

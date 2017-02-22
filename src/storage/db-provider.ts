@@ -20,7 +20,6 @@ export class DBProvider {
     favouritesList: Array<Object>;
 
     constructor(private store: Store<AppStore>) {
-        console.log('Hello DBProvider Provider');
         this.favourites = store.select('favourites');
         console.log('favdb ctor', this.favourites);
     }
@@ -29,8 +28,8 @@ export class DBProvider {
         this.database = new SQLite();
         this.database.openDatabase(DB_CONFIGURATION)
         .then(() => {
-            //this.database.executeSql("DROP TABLE IF EXISTS favourites",[])
-            this.database.executeSql("CREATE TABLE IF NOT EXISTS favourites (id INTEGER PRIMARY KEY AUTOINCREMENT, userId INTEGER, albumId INTEGER, title TEXT)", {})
+            this.database.executeSql("DROP TABLE IF EXISTS favourites",[])
+            this.database.executeSql("CREATE TABLE IF NOT EXISTS favourites (id INTEGER PRIMARY KEY AUTOINCREMENT, userId INTEGER, albumId INTEGER, title TEXT, author TEXT)", {})
                 .then((data) => { 
                                     console.log("TABLE CREATED: ", data);
                                 }, (error) => {
@@ -55,7 +54,7 @@ export class DBProvider {
             this.favouritesList = [];
             if(data.rows.length > 0) {
                 for(var i = 0; i < data.rows.length; i++) {
-                    this.favouritesList.push({userId: data.rows.item(i).userId, id: data.rows.item(i).albumId, title: data.rows.item(i).title, isFavourite: false});
+                    this.favouritesList.push({userId: data.rows.item(i).userId, id: data.rows.item(i).albumId, title: data.rows.item(i).title, isFavourite: true, author: data.rows.item(i).author });
                 }
             }
             this.store.dispatch({ type: favouritesActions.ActionTypes.FETCH_FAVOURITES, payload: this.favouritesList});
@@ -68,15 +67,27 @@ export class DBProvider {
 
     addToDB(album: Album) {
 
-        //let query = '('+ album.userId +', '+ album.id + ', ' + album.title +')' ;
-        //this.database.executeSql("INSERT INTO favourites (userId, id, title) VALUES "+ query, [])
-        this.database.executeSql("INSERT INTO favourites (userId, albumId, title) VALUES (?,?,?)", [album.userId, album.id, album.title])
+        this.database.executeSql("INSERT INTO favourites (userId, albumId, title, author) VALUES (?,?,?)", [album.userId, album.id, album.title, album.author])
         .then((data) => {
             this.store.dispatch({ type: favouritesActions.ActionTypes.ADD_FAVOURITE, payload: album});
             console.log("INSERTED: " + JSON.stringify(data));
         }, (error) => {
             //this.store.dispatch({ type: favouritesActions.ActionTypes.ERROR, payload: album.id});
-            console.log("ERROR: " + JSON.stringify(error.err));
+            console.log("INSERT ERROR: " + JSON.stringify(error.err));
+        });
+    }
+
+    removeFromDB(album: Album) {
+
+        var query = "DELETE FROM favourites WHERE albumId = ?";
+
+        this.database.executeSql(query, [album.id])
+        .then((data) => {
+            this.store.dispatch({ type: favouritesActions.ActionTypes.REMOVE_FAVOURITE, payload: album});
+            console.log("DELETED: " + JSON.stringify(data));
+        }, (error) => {
+            //this.store.dispatch({ type: favouritesActions.ActionTypes.ERROR, payload: album.id});
+            console.log("DELETE ERROR: " + JSON.stringify(error.err));
         });
     }
 
