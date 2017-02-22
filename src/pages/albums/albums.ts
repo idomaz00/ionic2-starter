@@ -1,7 +1,8 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
 import { NavController, App } from 'ionic-angular';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 
 import { LandingPage } from '../landing/landing';
 
@@ -15,11 +16,15 @@ import { AlbumsService } from '../../services/albums.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class AlbumsPage {
-  albums: Observable<Album[]>;
+export class AlbumsPage implements OnDestroy {
+  albumsObservable: Observable<Album[]>;
+  albums: Album[] = [];
+  queryText: string = '';
+  subscription: Subscription;
 
   constructor(public navCtrl: NavController, private app:App, private store: Store<AppStore>, private albumsService: AlbumsService) {
-    this.albums = albumsService.albums;
+    this.albumsObservable = albumsService.albums;
+    this.subscription = this.albumsObservable.subscribe(albums => this.albums = albums);
   }
 
   ionViewDidLoad() {
@@ -30,6 +35,27 @@ export class AlbumsPage {
     //const root = this.app.getRootNav();
     //root.popToRoot();
     this.navCtrl.parent.parent.setRoot(LandingPage); 
+  }
+
+  sortAlbums(sortAsc: boolean) {
+    if(sortAsc) {
+      this.albums.sort(function(a: Album, b:Album) {
+          if(a.title.toLowerCase() < b.title.toLowerCase()) return -1;
+          if(a.title.toLowerCase() > b.title.toLowerCase()) return 1;
+          return 0;
+      })
+    }
+    else {
+      this.albums.sort(function(a: Album, b:Album) {
+          if(a.title.toLowerCase() < b.title.toLowerCase()) return 1;
+          if(a.title.toLowerCase() > b.title.toLowerCase()) return -1;
+          return 0;
+      })
+    }
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Store } from '@ngrx/store';
 
@@ -15,7 +15,10 @@ import { AlbumsService } from '../../../services/albums.service';
 })
 export class AlbumsListPage {
   @Input() albums: Album[]; 
+  @Output() sortAlbums = new EventEmitter();
   albumDetailsPage = AlbumDetailsPage;
+  sortAsc: boolean = false;
+  isSorting: boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private store: Store<AppStore>, private favouritesService: FavouritesService, private albumsService: AlbumsService) {}
 
@@ -33,6 +36,16 @@ export class AlbumsListPage {
 
   removeFromFavourites(album:Album){
     this.favouritesService.removeFavourite(album);
+  }
+
+  toggleSort() {
+    this.isSorting = true;
+    this.sortAsc = !this.sortAsc;
+    this.doSorting();
+  }
+
+  doSorting() {
+    this.sortAlbums.emit(this.sortAsc);
   }
 
 }
