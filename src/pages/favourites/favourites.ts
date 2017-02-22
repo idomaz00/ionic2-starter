@@ -18,10 +18,6 @@ export class FavouritesPage {;
         this.favourites = this.favouritesService.favourites;
     }
 
-    refresh(): void {
-        this.favouritesService.getFavourites();
-    }
-
     ionViewDidLoad() {
         console.log('ionViewDidLoad favourites');
     }
