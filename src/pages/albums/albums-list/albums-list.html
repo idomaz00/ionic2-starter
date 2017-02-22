@@ -1,29 +1,33 @@
-  <ion-card *ngFor="let album of albums">
-    <ion-card-header>
-      {{ album.title }}
-    </ion-card-header>
+<button *ngIf="!isSorting || !sortAsc" ion-button color="secondary" outline (click)="toggleSort()">A-Z</button>
+<button *ngIf="sortAsc" ion-button color="secondary" outline (click)="toggleSort()">Z-A</button>
 
-    <ion-card-content>
-      By:{{ album.author }}
-    </ion-card-content>
+  
+<ion-card *ngFor="let album of albums">
+  <ion-card-header>
+    {{ album.title }}
+  </ion-card-header>
 
-    <ion-row>
-      <ion-col>
-        <button *ngIf="!album.isFavourite" ion-button icon-left clear small color="danger" (click)='addToFavourites(album)' >
-          <ion-icon ios="ios-star-outline" md="md-star-outline"></ion-icon>
-          <div>Favourite</div>
-        </button>
-        <button *ngIf="album.isFavourite" ion-button icon-left clear small color="danger" (click)='removeFromFavourites(album)' >
-          <ion-icon ios="ios-star" md="md-star"></ion-icon>
-          <div>Favourite</div>
-        </button>
-      </ion-col>
-      <ion-col>
-      </ion-col>
-      <ion-col>
-        <button (click)="viewDetails(album)" ion-button clear small item-right>
-          <div>See more...</div>
-        </button>
-      </ion-col>
-    </ion-row>
+  <ion-card-content>
+    By:{{ album.author }}
+  </ion-card-content>
+
+  <ion-row>
+    <ion-col>
+      <button *ngIf="!album.isFavourite" ion-button icon-left clear small color="danger" (click)='addToFavourites(album)' >
+        <ion-icon ios="ios-star-outline" md="md-star-outline"></ion-icon>
+        <div>Favourite</div>
+      </button>
+      <button *ngIf="album.isFavourite" ion-button icon-left clear small color="danger" (click)='removeFromFavourites(album)' >
+        <ion-icon ios="ios-star" md="md-star"></ion-icon>
+        <div>Favourite</div>
+      </button>
+    </ion-col>
+    <ion-col>
+    </ion-col>
+    <ion-col>
+      <button (click)="viewDetails(album)" ion-button clear small item-right>
+        <div>See more...</div>
+      </button>
+    </ion-col>
+  </ion-row>
 </ion-card>

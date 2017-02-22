@@ -43,7 +43,7 @@ export class PostsService implements OnDestroy {
             .subscribe(action => { 
                 this.store.dispatch(action); 
                 this.store.dispatch({ type: postsActions.ActionTypes.LOAD_LANDING, payload: action.payload.slice(action.payload.length - 5) });
-                this.postsArray = action.payload;
+                //this.postsArray = action.payload;
                 this.usersService.fetchUsers();
             });
     }

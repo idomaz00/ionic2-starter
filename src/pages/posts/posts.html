@@ -12,7 +12,7 @@
   
 </ion-header>
 
-<ion-content>
+<ion-content padding>
     <ion-searchbar color="primary" [(ngModel)]="queryText" placeholder="Search"></ion-searchbar>
 
     <posts-list [posts]="posts | contains:queryText" (loadPosts)="loadPosts($event)" (sortPosts)="sortPosts($event)"></posts-list>

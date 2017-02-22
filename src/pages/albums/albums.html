@@ -13,7 +13,8 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-searchbar color="primary" [(ngModel)]="queryText" placeholder="Search"></ion-searchbar>
 
-  <albums-list [albums]="albums | async"></albums-list>
+  <albums-list [albums]="albums | contains:queryText" (sortAlbums)="sortAlbums($event)"></albums-list>
 
 </ion-content>
