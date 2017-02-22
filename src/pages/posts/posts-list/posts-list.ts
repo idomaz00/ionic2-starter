@@ -4,7 +4,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { Post } from '../../../models/post';
 import { PostDetailsPage } from '../post-details/post-details';
 
-import { PostsService } from '../../../services/posts';
+import { PostsService } from '../../../services/posts.service';
 
 @Component({
   selector: 'posts-list',
@@ -13,7 +13,10 @@ import { PostsService } from '../../../services/posts';
 export class PostsListPage {
   @Input() posts: Post[];
   @Output() loadPosts = new EventEmitter();
+  @Output() sortPosts = new EventEmitter();
   postDetailsPage = PostDetailsPage;
+  sortAsc: boolean = false;
+  isSorting: boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private postsService: PostsService) {}
 
@@ -23,6 +26,7 @@ export class PostsListPage {
 
   doInfinite(infiniteScroll) {
     this.loadPosts.emit();
+    if(this.isSorting) { this.doSorting(); }
     infiniteScroll.complete();
   }
 
@@ -30,6 +34,16 @@ export class PostsListPage {
     this.navCtrl.push(this.postDetailsPage, {
       post: post
     });
+  }
+
+  toggleSort() {
+    this.isSorting = true;
+    this.sortAsc = !this.sortAsc;
+    this.doSorting();
+  }
+
+  doSorting() {
+    this.sortPosts.emit(this.sortAsc);
   }
 
 }

@@ -1,6 +1,6 @@
 import * as albumsActions from '../actions/albums.action';
 import * as favouritesActions from '../actions/favourites.action';
-import * as postsActions from '../actions/posts';
+import * as postsActions from '../actions/posts.actions';
 
 export const albumsReducer = (state: any = [], {type, payload}) => {
     switch(type) {

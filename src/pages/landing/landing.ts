@@ -7,8 +7,8 @@ import { TabsPage } from '../tabs/tabs';
 import { Post } from '../../models/post';
 import { AppStore } from '../../models/app-store';
 
-import { PostsService } from '../../services/posts';
-import { UsersService } from '../../services/users';
+import { PostsService } from '../../services/posts.service';
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'page-landing',
@@ -25,8 +25,6 @@ export class LandingPage {
 
       this.posts = postsService.landingPosts;
       //this.isLoading = postsService.loadingPosts;
-      postsService.fetchPosts();
-      //usersService.fetchUsers();
   }
 
   ionViewDidLoad() {

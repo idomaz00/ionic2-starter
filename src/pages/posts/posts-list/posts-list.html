@@ -1,4 +1,7 @@
 <ion-content padding>
+    <button *ngIf="!isSorting || !sortAsc" ion-button color="secondary" outline (click)="toggleSort()">A-Z</button>
+    <button *ngIf="sortAsc" ion-button color="secondary" outline (click)="toggleSort()">Z-A</button>
+
     <ion-card *ngFor="let post of posts">
         <ion-card-header>
             {{post.title}}

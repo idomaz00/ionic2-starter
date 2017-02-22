@@ -4,8 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 import { Store } from '@ngrx/store';
-import * as usersActions from '../actions/users';
-import * as postsActions from '../actions/posts';
+import * as usersActions from '../actions/users.actions';
+import * as postsActions from '../actions/posts.actions';
 
 import { AppStore } from '../models/app-store';
 

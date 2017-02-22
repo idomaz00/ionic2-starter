@@ -9,11 +9,11 @@ import { Comment } from '../models/comment';
 import { User } from '../models/user';
 
 import { Store } from '@ngrx/store';
-import * as postsActions from '../actions/posts';
+import * as postsActions from '../actions/posts.actions';
 
 import { AppStore } from '../models/app-store';
 
-import { UsersService } from './users';
+import { UsersService } from './users.service';
 
 @Injectable()
 export class PostsService implements OnDestroy {
