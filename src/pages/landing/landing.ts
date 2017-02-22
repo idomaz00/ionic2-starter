@@ -25,8 +25,6 @@ export class LandingPage {
 
       this.posts = postsService.landingPosts;
       //this.isLoading = postsService.loadingPosts;
-      postsService.fetchPosts();
-      //usersService.fetchUsers();
   }
 
   ionViewDidLoad() {

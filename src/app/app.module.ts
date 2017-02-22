@@ -27,7 +27,7 @@ import { usersReducer } from '../reducers/users.reducer';
 import { AlbumsService } from '../services/albums.service';
 import { FavouritesService } from '../services/favourites.service';
 
-import { albumsReducer } from '../reducers/albums.reducer';
+import { albumsReducer, albumPhotoReducer } from '../reducers/albums.reducer';
 import { favouritesReducer } from '../reducers/favourites.reducer';
 
 import { AppPipesModule } from '../pipes/app-pipe';
