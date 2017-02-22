@@ -18,12 +18,12 @@ import { LandingPostsListPage } from '../pages/landing/landing-posts-list/landin
 
 import { StoreModule } from '@ngrx/store';
 
-import { PostsService } from '../services/posts';
-import { UsersService } from '../services/users';
+import { PostsService } from '../services/posts.service';
+import { UsersService } from '../services/users.service';
 import { DBProvider } from '../storage/db-provider';
 
-import { loadingPostsReducer, postsReducer, landingPostsReducer, postCommentsReducer } from '../reducers/posts';
-import { usersReducer } from '../reducers/users';
+import { loadingPostsReducer, postsReducer, landingPostsReducer, postCommentsReducer } from '../reducers/posts.reducer';
+import { usersReducer } from '../reducers/users.reducer';
 import { AlbumsService } from '../services/albums.service';
 import { FavouritesService } from '../services/favourites.service';
 

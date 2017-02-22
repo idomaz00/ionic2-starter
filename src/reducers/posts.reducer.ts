@@ -1,4 +1,4 @@
-import * as postsActions from '../actions/posts';
+import * as postsActions from '../actions/posts.actions';
 
 export const loadingPostsReducer = (state: any = false, {type}) => {
     switch(type) {

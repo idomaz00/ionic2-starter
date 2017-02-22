@@ -1,4 +1,4 @@
-import * as usersActions from '../actions/users';
+import * as usersActions from '../actions/users.actions';
 
 export const usersReducer = (state: any = [], {type, payload}) => {
     switch(type) {

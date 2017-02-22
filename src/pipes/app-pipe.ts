@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 
-import { OrderByIdPipe } from './order-by';
+import { OrderByPipe } from './order-by';
+import { ContainsPipe } from './contains.pipe';
 
 export const PIPES = [
-    OrderByIdPipe
+    OrderByPipe,
+    ContainsPipe
 ];
 
 @NgModule({

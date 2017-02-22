@@ -12,5 +12,9 @@
   
 </ion-header>
 
-<posts-list [posts]="posts" (loadPosts)="loadPosts($event)"></posts-list>
+<ion-content>
+    <ion-searchbar color="primary" [(ngModel)]="queryText" placeholder="Search"></ion-searchbar>
 
+    <posts-list [posts]="posts | contains:queryText" (loadPosts)="loadPosts($event)" (sortPosts)="sortPosts($event)"></posts-list>
+
+</ion-content>
