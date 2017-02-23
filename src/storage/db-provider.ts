@@ -9,7 +9,7 @@ import * as favouritesActions from '../actions/favourites.action';
 import { Album } from '../models/album';
 
 export const DB_CONFIGURATION = {
-    name:       "data3.db",
+    name:       "data4.db",
     location:   "default"
 };
 
@@ -28,7 +28,7 @@ export class DBProvider {
         this.database = new SQLite();
         this.database.openDatabase(DB_CONFIGURATION)
         .then(() => {
-            this.database.executeSql("DROP TABLE IF EXISTS favourites",[])
+            //this.database.executeSql("DROP TABLE IF EXISTS favourites",[])
             this.database.executeSql("CREATE TABLE IF NOT EXISTS favourites (id INTEGER PRIMARY KEY AUTOINCREMENT, userId INTEGER, albumId INTEGER, title TEXT, author TEXT)", {})
                 .then((data) => { 
                                     console.log("TABLE CREATED: ", data);

@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { Album } from '../models/album';
 
 import { Store } from '@ngrx/store';
-//import * as favouritesActions from '../actions/favourites.action';
+import * as favouritesActions from '../actions/favourites.action';
 
 import { AppStore } from '../models/app-store';
 
@@ -20,13 +20,13 @@ export class FavouritesService {
 
     addFavourite(album: Album){
         console.log(album);
-        //this.store.dispatch({ type: favouritesActions.ActionTypes.ADD_FAVOURITE, payload: album});
-        this.database.addToDB(album);   
+        this.store.dispatch({ type: favouritesActions.ActionTypes.ADD_FAVOURITE, payload: album});
+        //this.database.addToDB(album);   
     }
 
     removeFavourite(album: Album){
-        //this.store.dispatch({ type: favouritesActions.ActionTypes.REMOVE_FAVOURITE, payload: album});
-        this.database.removeFromDB(album);   
+        this.store.dispatch({ type: favouritesActions.ActionTypes.REMOVE_FAVOURITE, payload: album});
+        //this.database.removeFromDB(album);   
     }
 
 }
