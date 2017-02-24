@@ -1,5 +1,4 @@
 import * as albumsActions from '../actions/albums.action';
-import * as favouritesActions from '../actions/favourites.action';
 import * as postsActions from '../actions/posts.actions';
 
 export const albumsReducer = (state: any = [], {type, payload}) => {
@@ -16,8 +15,8 @@ export const albumsReducer = (state: any = [], {type, payload}) => {
             });
             return albumList;
         }
-        case favouritesActions.ActionTypes.ADD_FAVOURITE:
-        case favouritesActions.ActionTypes.REMOVE_FAVOURITE:{
+        case albumsActions.ActionTypes.TOGGLE_FAVOURITE:{
+            console.log("u favoritima");
             let albumList = state.map((album, index) => {
                         if (index+1 === payload) {
                             return Object.assign({}, album, {
