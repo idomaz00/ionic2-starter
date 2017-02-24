@@ -10,6 +10,8 @@
     <div *ngFor="let photo of photos | async">
       <img src="{{photo.thumbnailUrl}}"/>
     </div>
+    <!--<p>{{photos | async | json}}</p>
+    <img [src]="(photos | async)"/>-->
 
     <h5>{{album.title}}</h5>
     <div><i>By: {{album.author}}</i></div>

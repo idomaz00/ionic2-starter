@@ -21,17 +21,16 @@ export class DBProvider {
 
     constructor(private store: Store<AppStore>) {
         this.favourites = store.select('favourites');
-        console.log('favdb ctor', this.favourites);
     }
 
     InitialSetUp(): void {
         this.database = new SQLite();
         this.database.openDatabase(DB_CONFIGURATION)
         .then(() => {
-            //this.database.executeSql("DROP TABLE IF EXISTS favourites",[])
             this.database.executeSql("CREATE TABLE IF NOT EXISTS favourites (id INTEGER PRIMARY KEY AUTOINCREMENT, userId INTEGER, albumId INTEGER, title TEXT, author TEXT)", {})
                 .then((data) => { 
                                     console.log("TABLE CREATED: ", data);
+                                    this.OpenExistingDatabase();
                                 }, (error) => {
                                     console.error("Unable to execute sql", error);
                                 })
@@ -61,7 +60,6 @@ export class DBProvider {
              
         }, (error) => {
             console.log("ERROR: " + JSON.stringify(error));
-            //this.store.dispatch({ type: favouritesActions.ActionTypes.ERROR, payload: this.favourites});
         });
     }
 
@@ -72,7 +70,6 @@ export class DBProvider {
             this.store.dispatch({ type: favouritesActions.ActionTypes.ADD_FAVOURITE, payload: album});
             console.log("INSERTED: " + JSON.stringify(data));
         }, (error) => {
-            //this.store.dispatch({ type: favouritesActions.ActionTypes.ERROR, payload: album.id});
             console.log("INSERT ERROR: " + JSON.stringify(error.err));
         });
     }
@@ -86,7 +83,6 @@ export class DBProvider {
             this.store.dispatch({ type: favouritesActions.ActionTypes.REMOVE_FAVOURITE, payload: album});
             console.log("DELETED: " + JSON.stringify(data));
         }, (error) => {
-            //this.store.dispatch({ type: favouritesActions.ActionTypes.ERROR, payload: album.id});
             console.log("DELETE ERROR: " + JSON.stringify(error.err));
         });
     }

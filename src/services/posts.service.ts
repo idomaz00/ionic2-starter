@@ -37,7 +37,8 @@ export class PostsService implements OnDestroy {
 
     fetchPosts() {
         this.store.dispatch({ type: postsActions.ActionTypes.FETCH_IN_PROGRESS });
-        this.http.get(`${this.API_PATH}?_limit=100`)
+        this.http.get(this.API_PATH) // ne radi u slucaju fantomskog buga
+        //this.http.get(`${this.API_PATH}?_limit=100`)
             .map(res => res.json())
             .map(payload => ({ type: postsActions.ActionTypes.FETCH, payload }))
             .subscribe(action => { 

@@ -31,7 +31,6 @@ export class AlbumsService {
     }
 
     fetchAlbumPhoto(albumId: number) {
-        //http://jsonplaceholder.typicode.com/photos?albumId=1&_limit=1
         this.http.get(`${this.API_PATH_PHOTOS}?albumId=${albumId}&_limit=1`)
             .map(res => res.json())
             .map(payload => ({ type: albumsActions.ActionTypes.FETCH_ALBUM_PHOTO, payload }))
