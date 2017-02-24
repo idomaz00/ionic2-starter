@@ -1,5 +1,7 @@
 import * as postsActions from '../actions/posts.actions';
 
+//dodat initial state
+
 export const loadingPostsReducer = (state: any = false, {type}) => {
     switch(type) {
         case postsActions.ActionTypes.FETCH_IN_PROGRESS: {

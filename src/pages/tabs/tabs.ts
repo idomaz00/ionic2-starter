@@ -19,11 +19,6 @@ export class TabsPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.tabIndex = this.navParams.get('index');
-    //this.switchTabs();
-  }
-
-  switchTabs() {
-    this.tabIndex = this.navParams.get('index');
   }
 
 }

@@ -17,7 +17,7 @@
             <span>By: {{post.author}}</span>
         </ion-card-content>
 
-        <h3>Comments:</h3>
+        <div padding><h3>Comments:</h3></div>
         <ion-list>
             <ion-item *ngFor="let comment of comments | async">
                 <p>{{comment.body}}</p>
