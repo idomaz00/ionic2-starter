@@ -1,4 +1,5 @@
 import { NgModule, ErrorHandler } from '@angular/core';
+import { EffectsModule } from '@ngrx/effects';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
@@ -22,13 +23,12 @@ import { PostsService } from '../services/posts.service';
 import { UsersService } from '../services/users.service';
 import { DBProvider } from '../storage/db-provider';
 
-import { loadingPostsReducer, postsReducer, landingPostsReducer, postCommentsReducer } from '../reducers/posts.reducer';
-import { usersReducer } from '../reducers/users.reducer';
 import { AlbumsService } from '../services/albums.service';
 import { FavouritesService } from '../services/favourites.service';
 
-import { albumsReducer, albumPhotoReducer } from '../reducers/albums.reducer';
-import { favouritesReducer } from '../reducers/favourites.reducer';
+import { AlbumsEffects } from '../effects/albums.effects';
+
+import { reducer } from '../reducers/reducer';
 
 import { AppPipesModule } from '../pipes/app-pipe';
 
@@ -51,16 +51,8 @@ import { AppPipesModule } from '../pipes/app-pipe';
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages: true
     }),
-    StoreModule.provideStore({
-      loading: loadingPostsReducer, 
-      posts: postsReducer, 
-      landingPosts: landingPostsReducer, 
-      users: usersReducer,
-      postComments: postCommentsReducer, 
-      albums: albumsReducer, 
-      favourites: favouritesReducer,
-      photo: albumPhotoReducer,
-    })
+    EffectsModule.run(AlbumsEffects),
+    StoreModule.provideStore(reducer)
   ],
   bootstrap: [IonicApp],
   entryComponents: [

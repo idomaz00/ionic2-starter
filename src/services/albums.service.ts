@@ -25,7 +25,7 @@ export class AlbumsService {
 
     constructor(private http: Http) {}
 
-    getAlbums(): Observable<Array<Album>> {
+    getAlbums(): Observable<Album[]> {
         return this.http.get(this.API_PATH)
             .map(res => res.json());
             //.map(payload => ({ type: albumsActions.ActionTypes.LOAD, payload }))

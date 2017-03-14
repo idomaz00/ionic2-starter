@@ -8,12 +8,13 @@ import { FavouritesService } from '../services/favourites.service';
 import { PostsService } from '../services/posts.service';
 
 import { LandingPage } from '../pages/landing/landing';
+import { AlbumsPage } from '../pages/albums/albums';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage = LandingPage;
+  rootPage = AlbumsPage;
 
   constructor(platform: Platform, storage: DBProvider, private albumsService: AlbumsService, private favouritesService: FavouritesService, private postsService: PostsService) {
     platform.ready().then(() => {
