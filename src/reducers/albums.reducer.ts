@@ -63,6 +63,7 @@ const initialState: State = {
 export function reducer(state = initialState, action: album.Actions): State {
     switch(action.type) {
         case album.ActionTypes.LOAD: {
+            console.log('LOAD stanje', state);
             return Object.assign({}, state, {
                 loading: true
             });
@@ -70,7 +71,7 @@ export function reducer(state = initialState, action: album.Actions): State {
 
         case album.ActionTypes.LOAD_SUCCESS: {
             const newAlbums = action.payload;
-
+            console.log('LOAD_SUCCESS stanje', newAlbums);
             return Object.assign({}, state, {
                 loaded: true,
                 loading: false,

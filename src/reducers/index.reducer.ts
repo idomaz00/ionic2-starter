@@ -54,3 +54,4 @@ export function reducer(state: any, action: any) {
 }
 
 export const getAlbumsState = (state: State) => state.albums;
+export const getAllAlbums = createSelector(getAlbumsState, fromAlbums.getAlbums);

@@ -12,18 +12,18 @@ import { FavouritesService } from '../../services/favourites.service';
   templateUrl: 'favourites.html'
 })
 export class FavouritesPage {;
-    favourites: Observable<Array<Album>>;
+    // favourites: Observable<Array<Album>>;
 
-    constructor(public navCtrl: NavController, public platform: Platform, private favouritesService: FavouritesService ) {
-        this.favourites = this.favouritesService.favourites;
-    }
+    // constructor(public navCtrl: NavController, public platform: Platform, private favouritesService: FavouritesService ) {
+    //     this.favourites = this.favouritesService.favourites;
+    // }
 
-    ionViewDidLoad() {
-        console.log('ionViewDidLoad favourites');
-    }
+    // ionViewDidLoad() {
+    //     console.log('ionViewDidLoad favourites');
+    // }
 
-    goHome(): void {
-        this.navCtrl.parent.parent.setRoot(LandingPage);
-    }
+    // goHome(): void {
+    //     this.navCtrl.parent.parent.setRoot(LandingPage);
+    // }
 
 }

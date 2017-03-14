@@ -62,7 +62,8 @@ export class AlbumsPage {
   albums$: Observable<Album[]>;
 
   constructor(store: Store<fromRoot.State>) {
-    this.albums$ = store.select(fromRoot.getAlbumsState);
+    this.albums$ = store.select(fromRoot.getAllAlbums);
+    console.log('viewcomp ctor', this.albums$);
   }
 
 }

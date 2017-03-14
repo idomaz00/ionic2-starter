@@ -18,6 +18,7 @@ import { LandingPage } from '../pages/landing/landing';
 import { LandingPostsListPage } from '../pages/landing/landing-posts-list/landing-posts-list';
 
 import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { PostsService } from '../services/posts.service';
 import { UsersService } from '../services/users.service';
@@ -28,7 +29,7 @@ import { FavouritesService } from '../services/favourites.service';
 
 import { AlbumsEffects } from '../effects/albums.effects';
 
-import { reducer } from '../reducers/reducer';
+import { reducer } from '../reducers/index.reducer';
 
 import { AppPipesModule } from '../pipes/app-pipe';
 
@@ -52,7 +53,10 @@ import { AppPipesModule } from '../pipes/app-pipe';
       tabsHideOnSubPages: true
     }),
     EffectsModule.run(AlbumsEffects),
-    StoreModule.provideStore(reducer)
+    StoreModule.provideStore(reducer),
+    StoreDevtoolsModule.instrumentOnlyWithExtension({
+      maxAge: 5
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [

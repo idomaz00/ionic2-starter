@@ -16,25 +16,25 @@ import { UsersService } from '../../services/users.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LandingPage {
-  tabPage: any = TabsPage;
-  posts: Observable<Array<Post>>;
-  isLoading: Observable<boolean>;
+  // tabPage: any = TabsPage;
+  // posts: Observable<Array<Post>>;
+  // isLoading: Observable<boolean>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private store: Store<AppStore>, private postsService: PostsService, private usersService: UsersService) {
-      console.log('ctor landing');
+  // constructor(public navCtrl: NavController, public navParams: NavParams, private store: Store<AppStore>, private postsService: PostsService, private usersService: UsersService) {
+  //     console.log('ctor landing');
 
-      this.posts = postsService.landingPosts;
-      //this.isLoading = postsService.loadingPosts;
-  }
+  //     this.posts = postsService.landingPosts;
+  //     //this.isLoading = postsService.loadingPosts;
+  // }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad landing');
-  }
+  // ionViewDidLoad() {
+  //   console.log('ionViewDidLoad landing');
+  // }
 
-  goToTab(tabIndex: number): void {
-    this.navCtrl.setRoot(TabsPage, {
-      index: tabIndex
-    });
-  }
+  // goToTab(tabIndex: number): void {
+  //   this.navCtrl.setRoot(TabsPage, {
+  //     index: tabIndex
+  //   });
+  // }
 
 }
